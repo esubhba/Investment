@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: Za1975ConfigServer  cloud:    config:      server:        git:          uri: https://github.com/esubhba/za1975.git
+          username: esubhba
+          password: Su@20126531
+          clone-on-start: true
+          default-label: main    refresh:      enabled: true  rabbitmq:    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+     
+management:  endpoints:    web:      exposure:        include:        - bus-refresh
+        - bus-env 
+        
+server:  port: 8010
+  
