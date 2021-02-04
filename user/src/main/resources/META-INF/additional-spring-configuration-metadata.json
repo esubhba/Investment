@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "token.expiration-time",
+    "type": "java.lang.Long",
+    "description": "Token Valid for milliseconds"
+  },
+  {
+    "name": "token.secrit-key",
+    "type": "java.lang.String",
+    "description": "Secret key for Jwt encryption "
+  }
+]}

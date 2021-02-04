@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: user-data
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+      h2:    console:      enabled: true      path: /h2-trace      settings:        web-allow-others: true  datasource:    url: jdbc:h2:file:./data/equity    driver-class-name: org.h2.Driver    username: za1975    password: User@123#  jpa:    database-platform: org.hibernate.dialect.H2Dialect    hibernate:      ddl-auto: update
+    show-sql: true  devtools:    restart:      enabled: true  hateoas:    use-hal-as-default-json-media-type: false
+management:    endpoint:        info:      enabled: true    metrics:      enabled: true    refresh:      enabled: true  endpoints:    web:      exposure:        include: 
+         - bus-refresh
+         - bus-env
+server:  port: ${port:0}  http2:    enabled: true  servlet:    context-path: /user
+springdoc:  swagger-ui:    path: /api-doc
+eureka:  client:
+    register-with-eureka: true    service-url:
+      defaultZone: http://localhost:8761/eureka
+token:
+  expiration-time : 72000000
+  secrit-key: 7e85t6M60:70
+owner-name: Subhadeep
