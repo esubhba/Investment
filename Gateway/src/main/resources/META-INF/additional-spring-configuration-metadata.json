@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "token.secrit-key",
+    "type": "java.lang.String",
+    "description": "A description for 'token.secrit-key'"
+  },
+  {
+    "name": "token.prefix",
+    "type": "java.lang.String",
+    "description": "A description for 'token.prefix'"
+  }
+]}
