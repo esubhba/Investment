@@ -1,0 +1,58 @@
+application:
+  title: Data Service
+  description: Equity Data Service
+  version: 1.0
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+server:
+  port: ${port:0}
+  http2:
+    enabled: true
+  servlet:
+    context-path: /equity
+spring:
+  application:
+    name: data-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest  
+  jpa:
+    database: postgresql
+    show-sql: true   
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ZA1975
+    username: za1975
+    password: User@123#
+    hikari:
+      allow-pool-suspension: true
+      maximum-pool-size: 10
+      minimum-idle: 240000
+springdoc:
+  api-docs.path: /api-docs  
+      
+management:
+  endpoint:    
+    metrics:
+      enabled: true
+  info:
+    defaults:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include:
+        - bus-env
+        - bus-refresh
+  
+    
+    
+
+      
