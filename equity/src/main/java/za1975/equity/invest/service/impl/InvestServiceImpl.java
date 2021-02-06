@@ -1,4 +1,4 @@
-package za1975.equity.invest.service;
+package za1975.equity.invest.service.impl;
 
 
 import java.util.Locale;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import lombok.extern.log4j.Log4j2;
 import za1975.equity.invest.entity.Investment;
 import za1975.equity.invest.repository.InvestRepository;
+import za1975.equity.invest.service.InvestService;
 
 @Service
 @Log4j2

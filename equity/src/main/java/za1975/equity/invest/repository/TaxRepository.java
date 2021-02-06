@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import za1975.equity.invest.entity.TaxDeductionDetails;
 
 @Repository
-public interface TaxRepositoey extends JpaRepository<TaxDeductionDetails, Integer> {
+public interface TaxRepository extends JpaRepository<TaxDeductionDetails, Integer> {
 
 }
