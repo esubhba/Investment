@@ -19,12 +19,16 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import za1975.equity.devident.entity.Devident;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "share_details",schema = "equity",uniqueConstraints = @UniqueConstraint(name="share_uq",columnNames = {"code","exn"}))
 public class Share extends BasicInformation {

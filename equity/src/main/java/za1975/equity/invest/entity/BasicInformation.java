@@ -26,9 +26,9 @@ public abstract class BasicInformation implements Serializable {
 	@Column(name="created_by",nullable = false,length = 250)
 	private String createdBy;
 	
+	@ColumnDefault(value = "now()")
 	@Column(name = "created_on",nullable = false,
-			updatable = false)
-	@CreatedDate
+			updatable = false)	
 	private LocalDateTime createdOn;
 	
 	@Column(name = "modified_by",nullable = true,length = 250 )

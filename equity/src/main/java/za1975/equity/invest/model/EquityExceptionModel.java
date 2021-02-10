@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonRootName("error_details")
-public class EquityException  {
+public class EquityExceptionModel  {
 	
 	@JsonProperty("error_code")
 	private String errorCode;

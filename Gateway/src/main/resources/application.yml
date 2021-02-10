@@ -18,10 +18,16 @@ spring:
   cloud:
     gateway:
       routes:
+      - id: accessor-service
+        predicates:        - Path= /accessors/**
+        - Header= Accept-Language
+        uri: lb://MANAGE-SERVICE  
+             
       - id: user-services-register
         predicates:
         - Path= /user/users/register        
         uri: lb://USER-DATA
+        
       - id: user-services-login
         predicates:
         - Path= /user/users/login
@@ -36,7 +42,7 @@ spring:
       - id: user-service-actuator
         uri: lb://USER-DATA          
         predicates:
-        - Path= /user/actuator/**   
+        - Path= /user/actuator/** 
 management:
   endpoint:
     refresh:

@@ -17,23 +17,33 @@ import za1975.equity.utils.MoneySerializer;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 @JsonInclude(content = Include.NON_NULL)
 public class StockSummery extends RepresentationModel<StockSummery>{
-	@JsonProperty("share_cod")
+	@JsonProperty("share_code")
 	private String shareCode;
 	@JsonProperty("exchange_code")
 	private String shareExchange;
 	@JsonProperty("quantity_on_hold")
-	private int quantityOnHold;
-	@JsonProperty("price")
-	@JsonSerialize(using = MoneySerializer.class,as = BigDecimal.class)
-	private BigDecimal price;
+	private long quantityOnHold;
+	@JsonProperty("price")	
+	private Double price;
 	@JsonProperty("total_quantity")
 	private Long totalQuantity;
-	@JsonProperty("total_profit")
-	@JsonSerialize(using = MoneySerializer.class,as = BigDecimal.class)
-	private BigDecimal profit;
+	@JsonProperty("total_profit")	
+	private Double profit;
+	
+	public StockSummery(String shareCode, String shareExchange, long quantityOnHold, Double price, Long totalQuantity,
+			Double profit) {
+		super();
+		this.shareCode = shareCode;
+		this.shareExchange = shareExchange;
+		this.quantityOnHold = quantityOnHold;
+		this.price = price;
+		this.totalQuantity = totalQuantity;
+		this.profit = profit;
+	}
+	
+	
 	
 }

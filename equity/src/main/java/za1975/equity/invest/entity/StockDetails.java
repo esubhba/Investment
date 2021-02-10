@@ -2,6 +2,7 @@ package za1975.equity.invest.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
@@ -34,7 +35,7 @@ import za1975.equity.utils.TransactionType;
 @Table(name="stock_details",schema = "equity",
 indexes = @Index(name="stock_idx",columnList = "share_id,transaction_type,transaction_date"),
 uniqueConstraints = @UniqueConstraint(name="uq_transaction",columnNames = {"ref_order_id","share_id","transaction_type"}))
-public class StockDetails extends BasicInformation {
+public class StockDetails extends BasicInformation implements Comparable<StockDetails> {
 
 	/**
 	 * 
@@ -79,5 +80,17 @@ public class StockDetails extends BasicInformation {
 	
 	@Column(name="tax",nullable = true,precision = 8,scale = 4)
 	private BigDecimal tax;
+
+	@Override
+	public int compareTo(StockDetails o) {
+		
+		return Comparator.comparing(StockDetails::getTransactionDate)				
+				.thenComparing(StockDetails::getOrderId)				
+				.compare(this, o);
+				
+				
+				
+	}
+	
 	
 }

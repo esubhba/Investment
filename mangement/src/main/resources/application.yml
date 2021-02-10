@@ -2,11 +2,19 @@ eureka:
   client:
     register-with-eureka: true
     service-url:
-      defaultZone: http:localhost:8017/eurka
+      defaultZone:  http://localhost:8761/eureka
 server:
   http2:
     enabled: true
-  port: ${PORT:0}
+  port: ${PORT:0}  servlet:    context-path: /accessors
 spring:
   application:
     name: manage-service
+
+
+feign:  client:    config:      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+      EquityDataClient:
+        error-decoder: com.manage.service.mangement.equity.util.EquityClientErrorDecoder

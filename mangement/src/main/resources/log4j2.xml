@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!-- Don't forget to set system property
+-Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+     to make all loggers asynchronous. -->
+ 
+<Configuration status="WARN">
+
+ <Properties>
+        <Property name="log-path">logs</Property>
+        <Property name="log-fileName">manage-service</Property>
+    </Properties>
+  <Appenders>
+    <!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
+    <RandomAccessFile name="RandomAccessFile" fileName="${log-path}/${log-fileName}.log" immediateFlush="false" append="false">
+      <PatternLayout>
+       <!--  <Pattern>%d %p %c{1.} [%t] %m %ex%n</Pattern>-->
+       <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Pattern>
+      </PatternLayout>
+    </RandomAccessFile>
+    <RandomAccessFile name="trace-log" fileName="${log-path}/${log-fileName}-trace.log" immediateFlush="false" append="false" filePattern="${log-path}/${log-fileName}_trace-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+           
+    </RandomAccessFile>
+    <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info" includeLocation="true">
+      <AppenderRef ref="RandomAccessFile"/>
+      <AppenderRef ref="Console"/>      
+    </Root>
+    <logger name="org.springframework" level="error" additivity="false">
+            <AppenderRef ref="trace-log" />
+        </logger>
+        <logger name="feign" level="debug" additivity="false">
+            <AppenderRef ref="trace-log" />
+        </logger>
+        <logger name="com.netflix.ribbon" level="debug" additivity="false">
+            <AppenderRef ref="trace-log" />
+        </logger>
+  </Loggers>
+</Configuration>

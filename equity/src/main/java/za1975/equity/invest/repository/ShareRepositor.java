@@ -11,6 +11,6 @@ import za1975.equity.invest.entity.Share;
 @Repository
 public interface ShareRepositor extends JpaRepository<Share, Long> {
 
-	Page<Share> findAllByCreatedBy(String userId, Pageable pageable, Sort sort);
+	Page<Share> findAllByCreatedBy(String userId, Pageable pageable);
     
 }

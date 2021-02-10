@@ -4,10 +4,12 @@ spring:
           username: esubhba
           password: Su@20126531
           clone-on-start: true
-          default-label: main    refresh:      enabled: true  rabbitmq:    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+          default-label: main
+          skip-ssl-validation: true    refresh:      enabled: true  rabbitmq:
+     host: localhost
+     port: 5672
+     username: guest
+     password: guest
      
 management:  endpoints:    web:      exposure:        include:        - bus-refresh
         - bus-env 

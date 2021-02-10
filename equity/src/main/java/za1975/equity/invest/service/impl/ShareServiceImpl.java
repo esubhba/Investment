@@ -24,7 +24,8 @@ public class ShareServiceImpl implements ShareService {
 	@Override
 	public Page<Share> getAllSharesByUserId(String userId,Pageable pageable,Sort sort)
 	{
-		return shareRepositor.findAllByCreatedBy(userId,pageable, sort);
+		
+		return shareRepositor.findAllByCreatedBy(userId,pageable);
 	}
 
 
