@@ -1,5 +1,6 @@
 eureka:
   client:
+    #eureka-server-d-n-s-name: DESKTOP-Q50BHSL
     service-url:
       defaultZone: http://localhost:8761/eureka
 server:
@@ -18,10 +19,10 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: accessor-service
-        predicates:        - Path= /accessors/**
+      - id: data-accessor-service
+        predicates:        - Path= /accessors/access/**
         - Header= Accept-Language
-        uri: lb://MANAGE-SERVICE  
+        uri: lb://ACCESSOR-SERVICE
              
       - id: user-services-register
         predicates:
@@ -32,6 +33,7 @@ spring:
         predicates:
         - Path= /user/users/login
         uri: lb://USER-DATA
+      
       - id: user-services
         predicates:
         - Path= /user/users/**
@@ -39,6 +41,7 @@ spring:
         filters:
         - AuthorizationFilter
         uri: lb://USER-DATA
+      
       - id: user-service-actuator
         uri: lb://USER-DATA          
         predicates:
