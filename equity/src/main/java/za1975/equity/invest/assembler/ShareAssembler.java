@@ -22,6 +22,7 @@ public class ShareAssembler extends RepresentationModelAssemblerSupport<Share, S
 	public ShareModel toModel(Share entity) {
 		
 		ShareModel model=ShareModel.builder()
+				.id(entity.getId())
 				.code(entity.getCode())
 				.exchangeName(entity.getExchangeName())
 				.details(entity.getDetails())

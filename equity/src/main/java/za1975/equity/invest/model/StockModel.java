@@ -36,7 +36,7 @@ import za1975.equity.utils.TransactionType;
 @Relation(collectionRelation = "transactions", itemRelation = "transaction")
 public class StockModel extends RepresentationModel<StockModel> {
 	
-	@JsonIgnore
+	
 	private Long id;
 	private Long shareId;
 	

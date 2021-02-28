@@ -35,7 +35,8 @@ dependencies {
 	implementation  'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation  'org.springframework.boot:spring-boot-starter-web'
 	implementation  'org.springframework.boot:spring-boot-starter-log4j2'
-	implementation  'com.github.hiwepy:disruptor-spring-boot-starter:1.0.3.RELEASE'
+	implementation  'com.lmax:disruptor:3.4.2'
+
 	implementation  'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation  'org.springframework.data:spring-data-rest-hal-explorer'
 	implementation 'org.springframework.cloud:spring-cloud-starter-bus-amqp'	

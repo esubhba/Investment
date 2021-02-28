@@ -24,6 +24,8 @@ public class StockAssembler extends RepresentationModelAssemblerSupport<StockDet
 	@Override
 	public StockModel toModel(StockDetails entity) {
 		StockModel model=StockModel.builder()
+				.id(entity.getId())
+				.shareId(entity.getShare().getId())
 				.orderId(entity.getOrderId())
 				.price(entity.getPrice())
 				.quantity(entity.getQuantity())
