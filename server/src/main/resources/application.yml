@@ -1,7 +1,8 @@
 eureka:
   client:    
     fetch-registry: false
-    register-with-eureka: false
+    register-with-eureka: false   
+    #eureka-server-d-n-s-name: DESKTOP-Q50BHSL 
   dashboard:
     enabled: true
 spring:
