@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: accessor-service
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+  zipkin:
+    base-url: http://localhost:9411   
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: .2
+server:
+  http2:
+    enabled: true
+  port: ${PORT:0}
+  servlet:
+    context-path: /accessors
+
+management:
+  endpoint:
+    info:
+      enabled: true
+    refresh:
+      enabled: true
+    metrics:
+      enabled: true    
+  endpoints:
+    web:
+      exposure:
+        include:
+        - bus-env
+        - bus-refresh
+
+
+eureka:  
+  client:
+    enabled: true       
+    register-with-eureka: true
+    #eureka-server-d-n-s-name: DESKTOP-Q50BHSL
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+feign:
+  circuitbreaker:
+    enabled: true
+  client:
+    config:
+      EquityClient:
+        logger-level: full        
+        error-decoder: com.equity.accessors.client.config.DataClientErrorDecoder
+        request-interceptors:
+        - com.equity.accessors.client.config.DataClientIntercepator
+
