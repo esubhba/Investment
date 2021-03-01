@@ -8,9 +8,7 @@ import org.springframework.hateoas.PagedModel;
 
 import com.manage.service.mangement.equity.model.ShareModel;
 
-public interface ShareDataService {
-
-	
+public interface ShareDataService {	
 
 	PagedModel<ShareModel> getAllShares(String userId, Pageable page, Sort sort,
 			Locale locale);

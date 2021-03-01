@@ -1,15 +1,20 @@
 package com.manage.service.mangement.controller;
 
+import java.util.Collection;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.PagedModel.PageMetadata;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +35,6 @@ public class ShareController {
 	@Autowired
 	private ShareDataService shareDataService;
 
-	
-	
 	@GetMapping
 	public ResponseEntity<PagedModel<ShareModel>> getShares(@PathVariable(name = "userId") String userId,
 			@PageableDefault(direction = Direction.DESC, page = 0, size = 10) Pageable defaultPage,
@@ -39,8 +42,32 @@ public class ShareController {
 			@RequestHeader(name = HttpHeaders.ACCEPT_LANGUAGE, required = false) Locale locale) {
 
 		PagedModel<ShareModel> modelPage = shareDataService.getAllShares(userId, defaultPage, sort, locale);
-		
-		return ResponseEntity.ok(modelPage);
+		PageMetadata metadata = modelPage.getMetadata();
+
+		Collection<ShareModel> items = modelPage.getContent();
+
+		items.stream().forEach(i -> {
+			// i.removeLinks();
+			i.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(ShareController.class, userId).getShares(userId, null, null,
+							LocaleContextHolder.getLocale()))
+					.withRel(IanaLinkRelations.COLLECTION))
+					.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ShareController.class, userId, i.getId())
+							.getShareDetails(userId, i.getId(), null)).withRel(IanaLinkRelations.ITEM));
+		});
+
+		return ResponseEntity
+				.ok(PagedModel.of(items, metadata,
+						WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ShareController.class, userId)
+								.getShares(userId, null, null, LocaleContextHolder.getLocale()))
+								.withRel(IanaLinkRelations.SELF)));
+
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getShareDetails(@PathVariable(name = "userId") String userId, @PathVariable("id") Long id,
+			@RequestHeader(name = HttpHeaders.ACCEPT_LANGUAGE, required = false) Locale locale) {
+		return null;
 
 	}
 

@@ -3,11 +3,20 @@ eureka:
     fetch-registry: false
     register-with-eureka: false   
     #eureka-server-d-n-s-name: DESKTOP-Q50BHSL 
+    service-url:      defaultZone: http://localhost:8761/eureka
   dashboard:
     enabled: true
 spring:
   application:
-    name: eureka
+    name: eureka  rabbitmq:    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+management:  endpoint:    refresh:      enabled: true
+    info:      enabled: true
+  endpoints:    web:      exposure:        include:        - bus-refresh
+        - bus-env
+      
 server:
   port: 8761
   http2:

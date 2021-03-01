@@ -9,12 +9,9 @@ server:
   port: ${PORT:0}  servlet:    context-path: /accessors
 spring:
   application:
-    name: manage-service
-
-
-feign:  client:    config:      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: full
-      EquityDataClient:
+    name: manage-service      
+        
+feign:  client:    config:      dataClient:
         error-decoder: com.manage.service.mangement.equity.util.EquityClientErrorDecoder
+        request-interceptors:        -  com.manage.service.mangement.equity.client.intrcepator.EquityDataClientRequestInterceptor 
+  

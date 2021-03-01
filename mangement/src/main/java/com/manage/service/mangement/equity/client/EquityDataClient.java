@@ -17,14 +17,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.manage.service.mangement.equity.model.ShareModel;
 
 import feign.Headers;
+import feign.Param;
 
-@FeignClient(name = "DATA-SERVICE")
-@Headers({"Content-Type: application/hal+json","Content-Type: application/json","Accept: * "})
+@FeignClient(value = "dataClient" ,name = "DATA-SERVICE", 
+fallbackFactory = ClientSupportFactory.class)
 public interface EquityDataClient {
 	
 	@RequestMapping(path="/equity/{userId}/shares",consumes = {MediaTypes.HAL_JSON_VALUE},method= RequestMethod.GET)
-	public PagedModel<ShareModel> getAllShares(@PathVariable(name = "userId") String userId,			
+	public PagedModel<ShareModel> getShares(@PathVariable(name = "userId") String userId,			
 			@PageableDefault(direction = Direction.DESC, page = 0, size = 10) Pageable defaultPage,
-			@RequestHeader(name = HttpHeaders.ACCEPT_LANGUAGE, required = false) Locale locale);
+			@RequestHeader(name = HttpHeaders.ACCEPT_LANGUAGE, required = false) Locale locale
+			);
 
 }
+

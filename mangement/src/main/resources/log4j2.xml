@@ -18,7 +18,7 @@
        <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</Pattern>
       </PatternLayout>
     </RandomAccessFile>
-    <RandomAccessFile name="trace-log" fileName="${log-path}/${log-fileName}-trace.log" immediateFlush="false" append="false" filePattern="${log-path}/${log-fileName}_trace-%d{yyyy-MM-dd}.log">
+    <RandomAccessFile name="trace-log" fileName="${log-path}/${log-fileName}-trace.log" immediateFlush="false" append="false">
             <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
            
     </RandomAccessFile>

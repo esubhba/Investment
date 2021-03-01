@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
- 
-<!-- Don't forget to set system property
--Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
-     to make all loggers asynchronous. -->
- 
-<Configuration status="WARN">
- <Properties>
-        <Property name="log-path">logs</Property>
-        <Property name="log-fileName">equity</Property>
-    </Properties>
-  <Appenders>
-    <!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
- 
-  <!--   <RandomAccessFile name="RandomAccessFile" fileName="${log-path}/${log-fileName}.log" immediateFlush="false" append="true">
-      <PatternLayout>
-        <Pattern>%d %p %class{1.} [%t] %location %m %ex%n</Pattern>
-      </PatternLayout>
-    </RandomAccessFile> -->
-    
-    <RollingFile  name="rollingFile"  fileName="${log-path}/${log-fileName}.log"  filePattern="${log-path}/${log-fileName}.%d{dd-MMM}.log.gz"
-    ignoreExceptions="false" immediateFlush="false" append="true">
-    <PatternLayout>
-        <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
-    </PatternLayout>
-    <Policies>
-        <TimeBasedTriggeringPolicy interval="1"/>
-    </Policies>
-    <DefaultRolloverStrategy max="5" />
-</RollingFile>
 
-    <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-    </Console>
-  </Appenders>
-  <Loggers>
-   <AsyncLogger name="za1975.equity" level="info" includeLocation="true">
-      <AppenderRef ref="rollingFile"/>
-    </AsyncLogger>
-    <Root level="info" includeLocation="true">
-      <AppenderRef ref="rollingFile"/>
-      <AppenderRef ref="Console"/>      
-    </Root>
-    <AsyncLogger name="org.hibernate" level="debug" additivity="false">
-            <AppenderRef ref="rollingFile" />
-    </AsyncLogger>
-  </Loggers>
+<!-- Don't forget to set system property -Dlog4j2.contextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector 
+	to make all loggers asynchronous. -->
+
+<Configuration status="WARN">
+	<Properties>
+		<Property name="log-path">logs</Property>
+		<Property name="log-fileName">equity</Property>
+	</Properties>
+	<Appenders>
+		<!-- Async Loggers will auto-flush in batches, so switch off immediateFlush. -->
+
+		<!-- <RandomAccessFile name="RandomAccessFile" fileName="${log-path}/${log-fileName}.log" 
+			immediateFlush="false" append="true"> <PatternLayout> <Pattern>%d %p %class{1.} 
+			[%t] %location %m %ex%n</Pattern> </PatternLayout> </RandomAccessFile> -->
+
+		<RollingFile name="rollingFile"
+			fileName="${log-path}/${log-fileName}.log"
+			filePattern="${log-path}/${log-fileName}.%d{dd-MMM}.log.gz"
+			ignoreExceptions="false" immediateFlush="false" append="true">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<AsyncLogger name="za1975.equity" level="info"
+			includeLocation="true">
+			<AppenderRef ref="rollingFile" />
+		</AsyncLogger>
+		<Root level="info" includeLocation="true">
+			<AppenderRef ref="rollingFile" />
+			<AppenderRef ref="Console" />
+		</Root>
+		<AsyncLogger name="org.hibernate" level="debug"
+			additivity="false">
+			<AppenderRef ref="rollingFile" />
+		</AsyncLogger>
+	</Loggers>
 </Configuration>

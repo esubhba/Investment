@@ -20,9 +20,10 @@ import lombok.NoArgsConstructor;
 @Relation(collectionRelation = "shares",itemRelation = "share")
 @JsonInclude(content = Include.NON_NULL)
 public class ShareModel extends RepresentationModel<ShareModel> {
-	
+	private Long id;
 	private String details;
 	private String code;
 	private String exchangeName;
+	
 
 }
