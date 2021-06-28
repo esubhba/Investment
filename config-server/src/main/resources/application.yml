@@ -2,10 +2,11 @@ spring:
   application:
     name: Za1975ConfigServer  cloud:    config:      server:        git:          uri: https://github.com/esubhba/za1975.git
           username: esubhba
-          password: Su@20126531
+          password: t6M60:70
           clone-on-start: true
           default-label: main
-          skip-ssl-validation: true    refresh:      enabled: true  rabbitmq:
+          skip-ssl-validation: true
+              refresh:      enabled: true  rabbitmq:
      host: localhost
      port: 5672
      username: guest

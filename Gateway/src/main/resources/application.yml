@@ -1,13 +1,14 @@
 eureka:
   client:
     #eureka-server-d-n-s-name: DESKTOP-Q50BHSL
+    fetch-registry: false
     service-url:
       defaultZone: http://localhost:8761/eureka
 server:
   port: ${PORT:0}
   http2:
     enabled: true
-  forward-headers-strategy: framework
+  forward-headers-strategy: framework  servlet:    session:      tracking-modes:      - cookie
 spring:
   application:
     name: za1975-gateway
@@ -56,7 +57,6 @@ management:
         include:        
         - bus-refresh
         - bus-env
-       
 token:
  secrit-key: 7e85t6M60:70
  prefix: Bearer

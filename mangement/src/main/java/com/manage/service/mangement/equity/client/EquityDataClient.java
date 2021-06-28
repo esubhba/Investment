@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.manage.service.mangement.equity.client.config.EquityDataClientFactory;
 import com.manage.service.mangement.equity.model.ShareModel;
 
-import feign.Headers;
-import feign.Param;
+
 
 @FeignClient(value = "dataClient" ,name = "DATA-SERVICE", 
-fallbackFactory = ClientSupportFactory.class)
+fallbackFactory = EquityDataClientFactory.class)
 public interface EquityDataClient {
 	
 	@RequestMapping(path="/equity/{userId}/shares",consumes = {MediaTypes.HAL_JSON_VALUE},method= RequestMethod.GET)
